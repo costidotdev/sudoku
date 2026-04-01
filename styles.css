@@ -1,0 +1,169 @@
+:root {
+    --selected-color: #bbdefb;
+    --adjacent-color: #e2ebf3;
+    --sameNumber-color: #c3d7ea;
+    --accent-color: #325aaf;
+    --text-color: #344861;
+    --border-color: #b1b7c4;
+    --wrong-color: #ffcccc;
+    --correctText-color: #325aaf;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.container {
+    width: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#board {
+    width: 450px;
+    height: 450px;
+    border: 1px solid black;
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#digits {
+    width: 450px;
+    height: 50px;
+    border: 1px solid black;
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+#digits .tile:hover {
+    transition: all 0.3s ease;
+    color: var(--accent-color);
+    background-color: var(--selected-color);
+}
+
+.tile {
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+
+    /* Text */
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.annotated {
+    color: var(--correctText-color);
+    font-size: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+.selected {
+    background-color: var(--selected-color);
+}
+
+.adjacent {
+    background-color: var(--adjacent-color);
+}
+
+.sameNumber {
+    background-color: var(--sameNumber-color);
+}
+
+.wrong {
+    background-color: var(--wrong-color);
+}
+
+.correct {
+    color: var(--correctText-color);
+}
+
+.horizontal-line {
+    border-bottom: 1px solid black;
+}
+
+.vertical-line {
+    border-right: 1px solid black;
+}
+
+h1 {
+    color: var(--text-color);
+    margin: 20px;
+    font-size: 36px;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    transition: all 0.3s ease;
+    color: var(--accent-color);
+    background-color: var(--selected-color);
+}
+
+#controls {
+    width: 450px;
+    margin: 8px auto;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.btn-control {
+    width: 150px;
+    height: 40px;
+    border: 1px solid black;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-control:hover {
+    background-color: var(--adjacent-color);
+    color: var(--accent-color);
+}
+
+.btn-control.active {
+    background-color: var(--selected-color);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+#stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* allows clicks through */
+}

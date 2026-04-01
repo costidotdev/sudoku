@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sudoku</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <nav>
+                <h1><a href="index.html">Sudoku</a></a></h1>
+                <div>
+                    <a href="index.html">Joacă</a>
+                    <a href="reguli.html">Reguli</a>
+                    <a href="backtracking.html">Backtracking</a>
+                </div>
+            </nav>
+
+            <div id="stats">
+                <p id="mistakes"></p>
+                <p id="time">Timp:</p>
+            </div>
+            <div id="board"></div>
+            <div id="controls">
+                <button id="btn-erase" class="btn-control" onclick="eraseTile()">
+                   Șterge
+                </button>
+                <button
+                    id="btn-annotate"
+                    class="btn-control"
+                    onclick="toggleAnnotation()"
+                >
+                   Anotează
+                </button>
+                <button id="btn-hint" class="btn-control" onclick="hint()">
+                    Hint
+                </button>
+            </div>
+            <div id="digits" class="number"></div>
+        </div>
+        <div class="fireworks"></div>
+    </body>
+</html>

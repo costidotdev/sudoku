@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Reguli - Sudoku</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+        .container-reguli {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+            p,
+            h2,
+            li{
+                text-align: left;
+                color: var(--text-color);
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <h1>Sudoku</h1>
+            <div>
+                <a href="index.html">Joacă</a>
+                <a href="reguli.html">Reguli</a>
+                <a href="backtracking.html">Backtracking</a>
+            </div>
+        </nav>
+        <div class="container-reguli">
+        <h2>Regulile Sudoku</h2>
+
+        <p>
+        Sudoku este un joc de logică în care trebuie să completezi o grilă de 9×9 celule cu cifrele de la 1 la 9.
+        Regulile sunt simple: fiecare rând, fiecare coloană și fiecare pătrat 3×3 trebuie să conțină toate cifrele
+        de la 1 la 9, fără nicio repetare. Jocul se rezolvă folosind logică și analiză, pe baza numerelor deja existente.
+        </p>
+
+        <h2>1. Grila Sudoku</h2>
+        <p>
+        Grila Sudoku este formată din 81 de celule (9 rânduri și 9 coloane). Aceasta este împărțită în 9 pătrate mai mici,
+        fiecare de dimensiune 3×3. Fiecare celulă aparține simultan unui rând, unei coloane și unui pătrat.
+        </p>
+        <p>
+        Pentru a rezolva corect puzzle-ul, fiecare rând, coloană și pătrat 3×3 trebuie să conțină toate cifrele de la 1 la 9,
+        fără ca vreun număr să se repete.
+        </p>
+
+        <h2>2. Nu ghici soluțiile</h2>
+        <p>
+        Sudoku nu este un joc bazat pe noroc. Deși poate fi tentant pentru începători să ghicească, acest lucru duce de
+        obicei la greșeli care fac puzzle-ul mult mai dificil de rezolvat ulterior.
+        </p>
+        <p>
+        Sudoku este conceput pentru a fi rezolvat folosind logică. Prin analizarea rândurilor, coloanelor și pătratelor,
+        poți determina ce numere sunt posibile și care trebuie eliminate.
+        </p>
+        <p>
+        Evitarea ghicitului ajută la menținerea unei soluții corecte și îți dezvoltă gândirea logică.
+        </p>
+
+        <h2>3. Începe cu cele mai ușoare mutări</h2>
+        <p>
+        La începutul fiecărui puzzle, unele rânduri, coloane sau pătrate sunt mai completate decât altele. Acestea oferă
+        indicii importante și reprezintă cel mai bun punct de plecare.
+        </p>
+        <p>
+        De exemplu, dacă într-un rând există deja 8 din cele 9 numere, atunci este ușor de determinat cifra lipsă.
+        </p>
+        <p>
+        În general, zonele cu mai multe numere completate sunt mai ușor de rezolvat și ar trebui abordate primele.
+        </p>
+
+        <h2>4. Folosește metoda eliminării</h2>
+        <p>
+        Metoda eliminării este una dintre cele mai simple și eficiente tehnici pentru începători.
+        </p>
+        <p>
+        Aceasta presupune:
+        </p>
+        <ul>
+            <li>identificarea numerelor lipsă dintr-un rând, coloană sau pătrat</li>
+            <li>eliminarea numerelor care apar deja în acea zonă</li>
+            <li>determinarea valorii corecte atunci când rămâne o singură opțiune</li>
+        </ul>
+        <p>
+        Prin aplicarea constantă a acestei metode, poți rezolva majoritatea puzzle-urilor fără a fi nevoie să ghicești.
+        </p>
+
+        <h2>5. Folosește metoda cross-hatching</h2>
+        <p>
+        Cross-hatching este o tehnică prin care folosești informațiile din rânduri și coloane pentru a restrânge
+        posibilele poziții ale unui număr într-un pătrat 3×3.
+        </p>
+        <p>
+        Prin eliminarea pozițiilor imposibile, rămâne un singur loc unde numărul poate fi plasat corect.
+        </p>
+        <p>
+        Această metodă implică observarea atentă a relațiilor dintre rânduri, coloane și pătrate și este foarte utilă
+        pentru progresul în joc.
+        </p>
+
+        <h2>6. Reanalizează constant grila</h2>
+        <p>
+        După fiecare număr plasat, este important să reevaluezi situația grilei.
+        </p>
+        <p>
+        Fiecare mutare poate influența alte zone ale puzzle-ului și poate crea noi oportunități de completare.
+        </p>
+        <p>
+        Întreabă-te constant ce s-a schimbat și ce noi posibilități au apărut.
+        </p>
+
+        <h2>7. Menține ritmul</h2>
+        <p>
+        Nu este recomandat să rămâi blocat într-o singură zonă a grilei.
+        </p>
+        <p>
+        Dacă nu găsești o soluție, treci la altă secțiune și revino mai târziu. Uneori, o perspectivă nouă te poate ajuta
+        să observi lucruri pe care le-ai ratat anterior.
+        </p>
+
+        <h2>8. Ai răbdare</h2>
+        <p>
+        Sudoku poate deveni dificil, mai ales la început. Este normal să nu găsești imediat soluția corectă.
+        </p>
+        <p>
+        Răbdarea și concentrarea sunt esențiale. Cu timpul, îți vei îmbunătăți abilitatea de a recunoaște tipare și de a
+        rezolva puzzle-uri mai rapid.
+        </p>
+
+        <h2>9. Folosește un timer</h2>
+        <p>
+        Utilizarea unui timer te poate ajuta să îți îmbunătățești viteza de rezolvare.
+        </p>
+        <p>
+        Poți seta un interval de timp pentru fiecare puzzle, în funcție de nivelul tău. Acest lucru te ajută să devii
+        mai eficient și mai organizat în gândire.
+        </p>
+
+        <h2>10. Încearcă variante diferite</h2>
+        <p>
+        După ce ai învățat regulile de bază, poți încerca puzzle-uri mai dificile sau variante diferite de Sudoku.
+        </p>
+        <p>
+        Acest lucru îți va dezvolta abilitățile de rezolvare și te va ajuta să înțelegi mai bine jocul.
+        </p>
+
+        <h2>Concluzie</h2>
+        <p>
+        Sudoku este un joc care dezvoltă gândirea logică, atenția și răbdarea. Prin aplicarea regulilor și tehnicilor
+        de bază, orice jucător poate învăța să rezolve puzzle-uri corect și eficient.
+        </p>
+</div>
+        </body>
+        </html>
+    </body>
+</html>
