@@ -7,6 +7,10 @@
     --border-color: #b1b7c4;
     --wrong-color: #ffcccc;
     --correctText-color: #325aaf;
+
+    --board-size: 450px;
+    --tile-size: 50px;
+    --font-size: 22px;
 }
 
 body {
@@ -16,7 +20,7 @@ body {
 }
 
 .container {
-    width: 450px;
+    width: var(--board-size);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -24,20 +28,18 @@ body {
 }
 
 #board {
-    width: 450px;
-    height: 450px;
+    width: var(--board-size);
+    height: var(--board-size);
     border: 1px solid black;
-
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 #digits {
-    width: 450px;
-    height: 50px;
+    width: var(--board-size);
+    height: var(--tile-size);
     border: 1px solid black;
-
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -51,13 +53,11 @@ body {
 }
 
 .tile {
-    width: 50px;
-    height: 50px;
+    width: var(--tile-size);
+    height: var(--tile-size);
     box-sizing: border-box;
     border: 1px solid var(--border-color);
-
-    /* Text */
-    font-size: 22px;
+    font-size: var(--font-size);
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -125,7 +125,7 @@ nav a:hover {
 }
 
 #controls {
-    width: 450px;
+    width: var(--board-size);
     margin: 8px auto;
     display: flex;
     justify-content: center;
@@ -133,7 +133,7 @@ nav a:hover {
 }
 
 .btn-control {
-    width: 150px;
+    width: calc(var(--board-size) / 3);
     height: 40px;
     border: 1px solid black;
     background-color: white;
@@ -165,5 +165,18 @@ nav a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* allows clicks through */
+    pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    :root {
+        --board-size: 324px;
+        --tile-size: 36px;
+        --font-size: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin: 10px;
+    }
 }
