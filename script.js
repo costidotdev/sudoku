@@ -5,18 +5,6 @@ let annotationMode = false;
 let mistakes = 0;
 
 const boardLength = 9;
-
-const initialBoard = [
-  [0, 0, 7, 4, 9, 1, 6, 0, 5],
-  [2, 0, 0, 0, 6, 0, 3, 0, 9],
-  [0, 0, 0, 0, 0, 7, 0, 1, 0],
-  [0, 5, 8, 6, 0, 0, 0, 0, 4],
-  [0, 0, 3, 0, 0, 0, 0, 9, 0],
-  [0, 0, 6, 2, 0, 0, 1, 8, 7],
-  [9, 0, 4, 0, 7, 0, 0, 0, 2],
-  [6, 7, 0, 8, 3, 0, 0, 0, 0],
-  [8, 1, 0, 0, 4, 5, 0, 0, 0],
-];
 const board = [
   [0, 0, 7, 4, 9, 1, 6, 0, 5],
   [2, 0, 0, 0, 6, 0, 3, 0, 9],
@@ -28,7 +16,7 @@ const board = [
   [6, 7, 0, 8, 3, 0, 0, 0, 0],
   [8, 1, 0, 0, 4, 5, 0, 0, 0],
 ];
-
+const initialBoard = board.map((row) => [...row]);
 const solution = [
   [3, 8, 7, 4, 9, 1, 6, 2, 5],
   [2, 4, 1, 5, 6, 8, 3, 7, 9],
@@ -68,6 +56,17 @@ function isBoardSolved() {
   return board.every((row) => !row.includes(0));
 }
 
+function winAnimation() {
+  stopTimer();
+  const container = document.querySelector(".fireworks");
+  const fireworks = new Fireworks.default(container);
+  fireworks.start();
+
+  setTimeout(() => {
+    fireworks.stop();
+  }, 5000);
+}
+
 window.onload = function () {
   setGame();
 };
@@ -94,11 +93,9 @@ function setGame() {
       const tileDiv = document.createElement("div");
       tileDiv.id = i + "-" + j;
 
+      tileDiv.classList.add("tile");
       if (board[i][j] !== 0) {
         tileDiv.innerText = board[i][j];
-        tileDiv.classList.add("tile");
-      } else {
-        tileDiv.classList.add("tile");
       }
 
       tileDiv.addEventListener("click", () => selectTile(tileDiv, i, j));
@@ -163,14 +160,7 @@ function placeNumber(digitDiv) {
       highlightSameNumber(number);
 
       if (isBoardSolved()) {
-        stopTimer();
-        const container = document.querySelector(".fireworks");
-        const fireworks = new Fireworks.default(container);
-        fireworks.start();
-
-        setTimeout(() => {
-          fireworks.stop();
-        }, 5000);
+        winAnimation();
       }
     } else {
       mistakes++;
@@ -231,6 +221,7 @@ function eraseTile() {
   const row = tileSelected.row;
   const col = tileSelected.col;
   if (initialBoard[row][col] !== 0) return;
+  board[row][col] = 0;
   const tile = document.getElementById(`${row}-${col}`);
   tile.innerText = "";
   tile.classList.remove("correct", "wrong");
@@ -250,6 +241,9 @@ function hint() {
   tile.innerText = solution[row][col];
   board[row][col] = solution[row][col];
   tile.classList.add("correct");
+  if (isBoardSolved()) {
+    winAnimation();
+  }
 }
 
 function toggleAnnotation() {

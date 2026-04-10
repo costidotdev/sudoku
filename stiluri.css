@@ -1,0 +1,20 @@
+/*body {
+    background-color: slategray;
+}*/
+
+#titlu {
+    color: SkyBlue;
+}
+
+.centrat {
+    text-align: center;
+}
+.dreapta {
+    text-align: right;
+}
+
+p {
+    font-family: “Times New Roman”;
+    text-align: center;
+    color: LightSteelBlue;
+}

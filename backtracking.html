@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Backtracking - Sudoku</title>
         <link rel="stylesheet" href="styles.css" />
-        <script src="backtracking.js" defer></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -14,15 +13,171 @@
         />
     </head>
     <body>
-        <div class="container">
-            <nav>
-                <h1><a href="index.html">Sudoku</a></h1>
-                <div>
-                    <a href="index.html">Joacă</a>
-                    <a href="reguli.html">Reguli</a>
-                    <a href="backtracking.html">Backtracking</a>
-                </div>
-            </nav>
+        <nav>
+            <h1>Sudoku</h1>
+            <div>
+                <a href="index.html">Joacă</a>
+                <a href="reguli.html">Reguli</a>
+                <a href="backtracking.html">Backtracking</a>
+            </div>
+        </nav>
+        <div class="container-page">
+            <p class="intro-text">
+                În 2014, în Admiterea de Informatică de la Universitatea
+                "Alexandru Ioan Cuza" din Iași s-a dat următoarea problemă:
+            </p>
+            <div class="links">
+                <a
+                    target="_blank"
+                    href="https://www.pbinfo.ro/probleme/1518/sudoku"
+                    >Pbinfo</a
+                >
+                <a
+                    target="_blank"
+                    href="https://www.modinfo.ro/admitere/iasi/2014/subiect.pdf"
+                    >Subiect</a
+                >
+            </div>
+
+            <p>
+                O grilă <strong>SUDOKU</strong> este o matrice
+                <strong>9 x 9</strong> care respectă următoarele proprietăți:
+            </p>
+            <ol>
+                <li>
+                    fiecare element al matricii este un număr natural între
+                    <strong>1 la 9</strong>;
+                </li>
+                <li>
+                    fiecare linie conține toate numerele naturale de la
+                    <strong>1 la 9</strong>;
+                </li>
+                <li>
+                    fiecare coloană conține toate numerele naturale de la
+                    <strong>1 la 9</strong>;
+                </li>
+                <li>
+                    fiecare dintre cele 9 submatrici de dimensiune
+                    <strong>3 x 3</strong> conține toate numerele de la
+                    <strong>1 la 9</strong>;
+                </li>
+            </ol>
+            <p>
+                Un puzzle <strong>SUDOKU</strong> este o matrice
+                <strong>9 x 9</strong> completată parțial cu numere naturale de
+                la <strong>1 la 9</strong>. O soluție a unui astfel de puzzle
+                este o grilă <strong>SUDOKU</strong> care coincide cu puzzle-ul
+                pe pozițiile precompletate.
+            </p>
+
+            <h2>Cerința</h2>
+            <p>
+                Scrieți un program care, pentru o matrice
+                <strong>9 x 9</strong> dată, reprezentând un puzzle
+                <strong>SUDOKU</strong>, determină o soluție a unui astfel de
+                puzzle, după regulile de mai sus.
+            </p>
+
+            <h2>Date de intrare</h2>
+            <p>
+                Fișierul de intrare <strong>sudoku.in</strong> conține o matrice
+                <strong>9 x 9</strong> (câte 9 elemente pe câte o linie a
+                fișierului, fiecare element fiind separat printr-un spațiu),
+                reprezentând un puzzle <strong>SUDOKU</strong> , în care
+                <strong>pozițiile necompletate au valoarea 0</strong>.
+            </p>
+
+            <h2>Date de ieșire</h2>
+            <p>
+                Fișierul de ieșire <strong>sudoku.out</strong> va conține o
+                matrice <strong>9 x 9</strong> (câte 9 elemente pe câte o linie
+                a fișierului, fiecare element fiind separat printr-un spațiu),
+                reprezentând soluția puzzle-ului din fișierul de intrare.
+            </p>
+
+            <h2>Restricții și precizări</h2>
+            <ul>
+                <li>
+                    puzzle-ul din fișierul de intrare are
+                    <strong>soluție unică</strong>, pentru toate testele
+                </li>
+            </ul>
+
+            <h2>Explicație</h2>
+            <p>
+                Pentru a rezolva această problemă, trebuie să folosim un
+                algoritm de <strong>backtracking</strong>, care va încerca să
+                completeze celulele goale cu o cifră de la 1 la 9 care este
+                validă. O cifră poate fi pusă într-o celulă dacă nu mai apare
+                încă o dată pe aceeași linie, coloană sau submatrice 3x3. Dacă
+                la un moment dat nu există nicio cifră validă, algoritmul revine
+                la pasul anterior și încearcă altă valoare, repetând procesul de
+                backtracking. Când toate celulele sunt completate corect, am
+                găsit soluția și oprim algoritmul.
+            </p>
+
+            <h2>Cod</h2>
+            <pre><code>#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+using namespace std;
+ifstream fin("sudoku.in");
+ofstream fout("sudoku.out");
+
+int a[10][10], ok = 0;
+
+int valid(int k, int row, int col) {
+  for (int i = 1; i &lt;= 9; i++)
+    if (a[row][i] == k)
+      return 0;
+  for (int i = 1; i &lt;= 9; i++)
+    if (a[i][col] == k)
+      return 0;
+
+  int startRow = (row - 1) / 3 * 3 + 1;
+  int startCol = (col - 1) / 3 * 3 + 1;
+  for (int i = startRow; i &lt;= startRow + 2; i++)
+    for (int j = startCol; j &lt;= startCol + 2; j++)
+      if (a[i][j] == k)
+        return 0;
+  return 1;
+}
+
+void afis() {
+  for (int i = 1; i &lt;= 9; i++) {
+    for (int j = 1; j &lt;= 9; j++)
+      fout &lt;&lt; a[i][j] &lt;&lt; ' ';
+    fout &lt;&lt; endl;
+  }
+}
+
+void bkt(int row, int col) {
+  if (ok)
+    return;
+  if (row == 10) {
+    afis();
+    ok = 1;
+    return;
+  } else if (col == 10) {
+    bkt(row + 1, 1);
+  } else if (a[row][col] != 0) {
+    bkt(row, col + 1);
+  } else {
+    for (int k = 1; k &lt;= 9; k++)
+      if (valid(k, row, col)) {
+        a[row][col] = k;
+        bkt(row, col + 1);
+        a[row][col] = 0;
+      }
+  }
+}
+
+int main() {
+  for (int i = 1; i &lt;= 9; i++)
+    for (int j = 1; j &lt;= 9; j++)
+      fin >> a[i][j];
+  bkt(1, 1);
+  return 0;
+}</code></pre>
         </div>
     </body>
 </html>
